@@ -1,42 +1,12 @@
 cabal-version:      2.4
 name:               aoc2023
 version:            0.0.1
-
--- A short (one-line) description of the package.
--- synopsis:
-
--- A longer description of the package.
--- description:
-
--- A URL where users can report bugs.
--- bug-reports:
-
--- The license under which the package is released.
--- license:
 author:             Eduard Eduardov
 maintainer:         eduard.eduardov@tempo.io
 
--- A copyright notice.
--- copyright:
--- category:
-extra-source-files: CHANGELOG.md
-
-executable Calibration1
-    main-is:          Calibration1.hs
-
-    -- Modules included in this executable, other than Main.
-    -- other-modules:
-
-    -- LANGUAGE extensions used by modules in this package.
-    -- other-extensions:
-    build-depends:
-        base ^>=4.17.2.0,
-        aoc2023 ^>=0.0.1
-    hs-source-dirs:   1.Calibration
-    default-language: Haskell2010
-
-executable Calibration2
-    main-is:          Calibration2.hs
+executable Main
+    main-is:          Main.hs
+    other-modules:    Day2
 
     -- Modules included in this executable, other than Main.
     -- other-modules:
@@ -46,6 +16,7 @@ executable Calibration2
     build-depends:
         base ^>=4.17.2.0,
         regex-posix >= 0.96,
-        aoc2023 ^>=0.0.1
-    hs-source-dirs:   1.Calibration
+        parsec >= 3.1.16,
+        containers >= 0.6.7
+    hs-source-dirs:   src
     default-language: Haskell2010
