@@ -27,7 +27,7 @@ processLineA [] = 0
 
 processLineB :: Pattern -> String -> Int
 processLineB (Pattern p t) [] = 0
-processLineB (Pattern p t) line = case t((t line) =~ p :: String) of 
+processLineB (Pattern p t) line = case t (t line =~ p :: String) of
   "" -> 0
   "one" -> 1
   "two" -> 2
@@ -38,7 +38,7 @@ processLineB (Pattern p t) line = case t((t line) =~ p :: String) of
   "seven" -> 7
   "eight" -> 8
   "nine" -> 9
-  x -> read x 
+  x -> read x
 
 findCalibrationA :: [String] -> Int
 findCalibrationA = foldr (\ x -> (+) (10 * processLineA x + processLineA (reverse x))) 0
@@ -47,7 +47,7 @@ day1a :: String -> Int
 day1a content = findCalibrationA (lines content)
 
 findCalibrationB :: [String] -> Int
-findCalibrationB = foldr (\ x -> (+) (10 * (processLineB straight x) + (processLineB inverse x))) 0
+findCalibrationB = foldr (\ x -> (+) (10 * processLineB straight x + processLineB inverse x)) 0
 
 day1b :: String -> Int
 day1b content = findCalibrationB (lines content)

@@ -1,12 +1,11 @@
 module Main where
 
-import Day2 (day2a, day2b)
+import Day3 (day3a, day3b)
 import System.Environment (getArgs)
 
 contentFromPath :: FilePath -> IO String
 contentFromPath path = do
-  content <- readFile path
-  return content
+  readFile path
 
 getSuffix :: IO String
 getSuffix = do
@@ -25,4 +24,4 @@ run day funcs = do
 
 main :: IO()
 main = do
-    run 2 [day2a, day2b]
+    run 3 [day3a, day3b]

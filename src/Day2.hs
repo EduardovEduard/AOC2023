@@ -14,6 +14,7 @@ import Data.Semigroup (Semigroup, (<>))
 import Data.Monoid (Monoid, mempty, mappend)
 import Data.Foldable (fold)
 import Text.Parsec (parse)
+import Data.Either (rights)
 
 data GameState = GameState { gid :: Int, gr :: Int, gg :: Int, gb :: Int } deriving (Show, Eq)
 data TurnState = TurnState { tr :: Int, tg :: Int, tb :: Int } deriving (Show, Eq)
@@ -36,7 +37,7 @@ instance Monoid TurnState where
 type GameParser = Parser GameState
 
 numberParser :: Parser Int
-numberParser = fmap read $ many1 digit
+numberParser = read <$> many1 digit
 
 comma :: Parser ()
 comma = do
@@ -87,20 +88,17 @@ gameParser = do
     turnState <- maxTurnStateParser
     return $ GameState gameID (tr turnState) (tg turnState) (tb turnState)
 
-extractGames :: [Either ParseError GameState] -> [GameState]
-extractGames results = [c | Right c <- results] 
-
 runGames :: [String] -> [GameState]
-runGames = extractGames . fmap (parse gameParser "input")
+runGames = rights . fmap (parse gameParser "input")
 
 day2a :: String -> Int
 day2a content =
     let games = runGames $ lines content
-        validGames = filter (\game -> game <= baseState) games
+        validGames = filter (<= baseState) games
     in sum $ map gid $ validGames
 
 day2b :: String -> Int
-day2b content = 
+day2b content =
     let games = runGames $ lines content
-    in sum $ map (\game -> (gr game * gg game * gb game)) games
-        
+    in sum $ map (\game -> gr game * gg game * gb game) games
+
