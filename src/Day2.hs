@@ -95,7 +95,7 @@ day2a :: String -> Int
 day2a content =
     let games = runGames $ lines content
         validGames = filter (<= baseState) games
-    in sum $ map gid $ validGames
+    in sum $ map gid validGames
 
 day2b :: String -> Int
 day2b content =
