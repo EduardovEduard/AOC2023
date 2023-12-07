@@ -1,6 +1,7 @@
 module Main where
 
-import Day6 (day6a, day6b)
+import Day7a (day7a)
+import Day7b (day7b)
 import System.Environment (getArgs)
 
 contentFromPath :: FilePath -> IO String
@@ -24,4 +25,4 @@ run day funcs = do
 
 main :: IO()
 main = do
-    run 6 [day6a, day6b]
+    run 7 [day7a, day7b]

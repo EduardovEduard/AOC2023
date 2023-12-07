@@ -5,7 +5,7 @@ data Race =  Race { time :: Double, recordS :: Double } deriving (Show)
 getRaces :: String -> ([String] -> [String]) -> [Race]
 getRaces content transform = let 
     l = lines content
-    times = map read $ transform $ tail $ words $(l !! 0)
+    times = map read $ transform $ tail $ words (l !! 0)
     distances = map read $ transform $ tail $ words (l !! 1)
     in map (uncurry Race) $ zip times distances
 
