@@ -6,7 +6,7 @@ maintainer:         eduard.eduardov@tempo.io
 
 executable Main
     main-is:          Main.hs
-    other-modules:    Day1, Day2, Day3, Day4, Day5, Day6, Day7a, Day7b
+    other-modules:    Day1, Day2, Day3, Day4, Day5, Day6, Day7a, Day7b, Day8
     -- Modules included in this executable, other than Main.
     -- other-modules:
 
