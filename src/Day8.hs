@@ -2,13 +2,11 @@ module Day8 where
 import Text.Regex.Posix
 import Data.Maybe (listToMaybe)
 import qualified Data.Map as Map
-import Debug.Trace
 import Data.List(isSuffixOf)
 import Data.Map(Map, findWithDefault, fromListWith, toList, insert, (!))
 
 newtype NodeDescription = NodeDescription (String, String, String) deriving (Show, Eq)
 data Node = Node { left :: String, right :: String } deriving (Show, Eq)
-data MapNode = MapNode { leftN :: Maybe MapNode , rightN :: Maybe MapNode } deriving (Show, Eq)
 
 pattern = "([A-Z0-9]{3}) = \\(([A-Z0-9]{3}), ([A-Z0-9]{3})\\)"
 
@@ -37,7 +35,6 @@ day8a content = let
     l = lines content
     path = head l
     pathMap = parseMap $ drop 2 l
-    m = trace(show pathMap) pathMap
     in traverseMap pathMap "AAA" (cycle path) (=="ZZZ")
 
 lcd :: Integral a => a -> a -> a
@@ -48,7 +45,6 @@ day8b content = let
     l = lines content
     path = head l
     pathMap = parseMap $ drop 2 l
-    m = trace(show pathMap) pathMap
     startNodes = filter (isSuffixOf "A") $ Map.keys pathMap
     nums = map (\node -> traverseMap pathMap node (cycle path) (isSuffixOf "Z")) startNodes
     in foldl lcd 1 nums
